@@ -15,7 +15,7 @@ class B {
   String? name;
 
   B({required this.number, this.name});
-  // generative constructor is a default constructor with parameters
+  //a generative constructor is a default constructor with parameters.
   //when using named parameters, if nullable, field must be declared as such
   //if not nullable, must use `required`
   //no function body needed if only setting the field values
@@ -24,8 +24,8 @@ class B {
 class C {
   C(int number, String name) {
     //do something with variables
+    //if not fields, then include the datatype and function body
   }
-  //if not fields, then include the datatype and function body
 }
 
 class D {
@@ -34,6 +34,8 @@ class D {
 
   D(int nu, String na) : number = nu, name = na;
   //an initializer list can be used to update the fields
+  //initializer list goes between : and { start of function body }
+  //function body is not required after the initializer list
 }
 
 class E {
@@ -48,7 +50,7 @@ class E {
   }
 
   E.predefined() : number = 42, name = 'Luke' {
-    //named constructor as a default to the default constructor.
+    //named constructor as an alternative to the default constructor.
     //call it whatever you want.
     //setting non-nullable fields must be done in the initializer
     //or in the ( ).
@@ -81,7 +83,7 @@ class G {
   G.alternateNamed(double _x) : this(_x, 0);
   // only provide one of the field values, pass the value to the initializer
   // Using _x as a different name to illustrate that it is separate
-  // Delegates to the main constructor.
+  // Delegates to the main constructor by calling this(_x, 0).
 }
 
 class H {
@@ -112,6 +114,9 @@ class J {
   factory clone(J other) => J(other.number, other.name);
   //factory constructor makes a copy of an instance of J
   // Equivalent to `factory J.clone(J other)`.
+  // call it like this:
+  // J first = J(12, 'bob');
+  // J second = J.clone(first);
 
   @override
   String toString() {
@@ -126,6 +131,7 @@ class K {
   String name;
   static double pie = 3.14;
   //static fields, like K.pie, belongs to the class, not the instance
+  //the static field or method are prefixed with the class name, not `this`
 
   K(this.number, this.name) {
     K.pie = K.pie * 2;
@@ -139,6 +145,7 @@ class K {
     // .round() .floor() .ceil() just like JS
   }
   //methods and fields can both be static
+  //static methods cannot access `this` the instance
 }
 
 class L {
@@ -162,6 +169,8 @@ class Student extends Person with Hands implements Study {
   String program;
 
   Student({required super.name, required this.program});
+  // super.name references the name field in the Person class
+  // this.program references the program field in the Student class
 
   @override
   void useBrain() {
@@ -174,6 +183,9 @@ class Graduate extends Student {
   String credential;
 
   Graduate({required super.name, required super.program, required this.credential});
+  //super.name is the name field in Person
+  //super.program is the program field in Student
+  //this.credential is the credential field in Graduate
 
   @override
   String toString() {
