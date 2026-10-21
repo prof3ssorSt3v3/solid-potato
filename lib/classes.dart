@@ -26,6 +26,10 @@ class UFO extends UAP with WeaponSystems, AbductionSystems {
   //gets all the UAP methods and properties
 
   UFO({required super.id, super.isVisible});
+
+  //we can use the WeaponSystems shootLaser() method from and instance
+  //or override it
+  //same with the AbductionSystems getThatCow() method
 }
 
 class USO extends UAP with WeaponSystems {
@@ -33,6 +37,9 @@ class USO extends UAP with WeaponSystems {
   String description = 'Unidentified Submerged Object';
   //gets all the UAP methods and properties
   USO({required super.id, super.isVisible});
+
+  //we can use the WeaponSystems shootLaser() method from and instance
+  //or override it
 }
 
 abstract interface class NonHumanCraft {
@@ -44,6 +51,14 @@ abstract interface class NonHumanCraft {
   void changeDirection() {}
 }
 
-mixin WeaponSystems {}
+mixin WeaponSystems {
+  void shootLaser() {
+    print('pew pew');
+  }
+}
 
-mixin AbductionSystems {}
+mixin AbductionSystems {
+  void getThatCow() {
+    print('moooooooooo!');
+  }
+}
