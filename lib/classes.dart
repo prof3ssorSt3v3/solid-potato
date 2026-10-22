@@ -13,8 +13,14 @@ class UAP implements NonHumanCraft {
   void disappear() {}
 
   // NonHumanCraft interface methods
-  void takeoff() {}
-  void land() {}
+  void takeoff() {
+    print('look in the sky');
+  }
+
+  void land() {
+    print('thud');
+  }
+
   void accelerate() {}
   void decelerate() {}
   void changeDirection() {}
@@ -28,11 +34,12 @@ class UFO extends UAP with WeaponSystems, AbductionSystems {
   UFO({required super.id, super.isVisible});
 
   //we can use the WeaponSystems shootLaser() method from and instance
+
   //or override it
   //same with the AbductionSystems getThatCow() method
 }
 
-class USO extends UAP with WeaponSystems {
+class USO extends UAP with WeaponSystems, AbductionSystems {
   @override
   String description = 'Unidentified Submerged Object';
   //gets all the UAP methods and properties
@@ -40,6 +47,15 @@ class USO extends UAP with WeaponSystems {
 
   //we can use the WeaponSystems shootLaser() method from and instance
   //or override it
+  @override
+  void takeoff() {
+    print('look in the sea');
+  }
+
+  @override
+  void getThatCow() {
+    print('Squeeeee says the dolphin');
+  }
 }
 
 abstract interface class NonHumanCraft {

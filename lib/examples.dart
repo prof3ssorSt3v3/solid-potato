@@ -236,7 +236,16 @@ class L {
 class Person {
   String name;
   Person({required this.name});
+
+  void speak(String words) {
+    print(words);
+  }
 }
+
+// Student s1 = Student(name: 'Art', program: 'Graphic Design');
+// print(s1['name']);
+// print(s1['program']);
+// s1.speak('Hello world');
 
 class Student extends Person with Hands implements Study {
   String program;
@@ -245,6 +254,10 @@ class Student extends Person with Hands implements Study {
   // super.name references the name field in the Person class
   // this.program references the program field in the Student class
 
+  @override
+  void prepareForExam() {
+    //define what this method does HERE in Student
+  }
   @override
   void useBrain() {
     //function must be implemented because class implements interface Study
@@ -262,13 +275,16 @@ class Graduate extends Student {
 
   @override
   String toString() {
+    // Object.toString()
     return 'Graduate $name has a $credential from $program.';
   }
 }
 
 mixin class Hands {
+  //mixin means I am ALLOWED to use these things if I want
+  // We "compose" new classes by saying "with mixin1, mixin2, mixin3"
   bool _isRaised = false;
-
+  //I could @override the method(s) etc
   void raiseHand() {
     _isRaised = true;
   }
@@ -278,10 +294,15 @@ mixin class Hands {
   }
 }
 
-interface class Study {
+abstract interface class Study {
+  //If we "implements" an Interface
+  // class A implements interface1, interface2, interface3
+  // YOU MUST override ALL the methods
+
   void useBrain() {
     //if this interface were abstract then we could skip the function body
   }
+  void prepareForExam();
 }
 
 void main() {
